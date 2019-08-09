@@ -1,11 +1,12 @@
-# feign-eureka
-Example of using feign with eureka
-
-Assumes eureka (from [spring-cloud-samples](https://github.com/spring-cloud-samples/eureka)) is running on http://localhost:8761
-
 ## building
 
 `mvn package`
+
+# eureka
+run `java -jar eureka/target/eureka-0.0.1-SNAPSHOT.jar`
+
+verify it is functioning at [http://localhost:8761](http://localhost:8761)
+
 
 ## hello server
 
