@@ -1,11 +1,12 @@
-# feign-eureka
-Example of using feign with eureka
-
-Assumes eureka (from [spring-cloud-samples](https://github.com/spring-cloud-samples/eureka)) is running on http://localhost:8761
-
 ## building
 
 `mvn package`
+
+# eureka
+run `java -jar eureka/target/eureka-0.0.1-SNAPSHOT.jar`
+
+verify it is functioning at [http://localhost:8761](http://localhost:8761)
+
 
 ## hello server
 
@@ -22,20 +23,6 @@ run `java -jar client/target/feign-eureka-hello-client-0.0.1-SNAPSHOT.jar`
 verify it is functioning at [http://localhost:7211](http://localhost:7211)
 
 You should see `Hello World: HelloServer:myhostname:7111`
-
-### hellow client error
-
-You may see an error while the eureka/ribbon caches warm up similar to the following:
-
-    Whitelabel Error Page
-
-    This application has no explicit mapping for /error, so you are seeing this as a fallback.
-
-    Wed Jan 07 13:13:39 MST 2015
-    There was an unexpected error (type=Internal Server Error, status=500).
-    com.netflix.client.ClientException: Load balancer does not have available server for client: HelloServer
-
-It should go away shortly.
 
 ## See round robin load balancing in action
 
