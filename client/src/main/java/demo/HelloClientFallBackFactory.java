@@ -1,5 +1,6 @@
 package demo;
 
+import com.netflix.hystrix.exception.HystrixTimeoutException;
 import feign.FeignException;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
@@ -16,7 +17,8 @@ public class HelloClientFallBackFactory implements HelloClient {
 
         System.out.println(ExceptionUtils.getMessage(cause));
 
-        String httpStatus = cause instanceof FeignException ? Integer.toString(((FeignException) cause).status()) : cause.getMessage();
+        String httpStatus = cause instanceof FeignException ? Integer.toString(((FeignException) cause).status()) : cause instanceof HystrixTimeoutException ? "time out" :
+                cause.getMessage();
         System.out.println(httpStatus);
         return "status received is " + httpStatus;
     }

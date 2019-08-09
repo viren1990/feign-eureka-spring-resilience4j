@@ -20,14 +20,16 @@ public class HelloClientConfiguration {
     @Autowired
     private CircuitBreakerRegistry circuitBreakerRegistry;
 
+    private static final String SERVER_SERVICE_ID = "HelloServer";
+    private static final String DEFAULT_CIRCUIT_BREAKER = "default";
 
 
     @Bean
     public HelloClient client() {
 
-        final URI uri = discoveryClient.getInstances("HelloServer").iterator().next().getUri();
+        final URI uri = discoveryClient.getInstances(SERVER_SERVICE_ID).iterator().next().getUri();
 
-        final CircuitBreaker circuitBreaker = circuitBreakerRegistry.circuitBreaker("default");
+        final CircuitBreaker circuitBreaker = circuitBreakerRegistry.circuitBreaker(DEFAULT_CIRCUIT_BREAKER);
         final FeignDecorators decorators = FeignDecorators.builder()
                 .withCircuitBreaker(circuitBreaker)
                 .withFallbackFactory(HelloClientFallBackFactory::new)
