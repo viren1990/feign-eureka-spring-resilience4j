@@ -20,4 +20,9 @@ public class HelloClientFallBackFactory implements HelloClient {
         System.out.println(httpStatus);
         return "status received is " + httpStatus;
     }
+
+    @Override
+    public void resetServiceCounter() {
+        System.out.println("Reset couldn't be done");
+    }
 }

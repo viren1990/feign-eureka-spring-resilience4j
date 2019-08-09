@@ -2,6 +2,8 @@ package demo;
 
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -18,7 +20,7 @@ import java.util.concurrent.atomic.LongAdder;
 @EnableDiscoveryClient
 @RestController
 @EnableFeignClients
-public class HelloClientApplication {
+public class HelloClientApplication implements ApplicationRunner {
 
     @Autowired
     private HelloClient client;
@@ -34,6 +36,10 @@ public class HelloClientApplication {
     }
 
 
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        client.resetServiceCounter();
+    }
 }
 
 
